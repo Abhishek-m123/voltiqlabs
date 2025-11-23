@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Voltiq Labs | Electronic Projects for College Students</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Voltiq Labs builds mini-projects, major projects, and custom electronics for engineering and diploma students. Ready-made + customized projects with explanation and basic documentation." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+         :root {
+            --bg-dark: #050816;
+            --bg-card: #0c1220;
+            --accent: #f59e0b;
+            /* warm accent to match logo */
+            --accent-soft: rgba(245, 158, 11, 0.15);
+            --accent-2: #fb923c;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border-subtle: rgba(148, 163, 184, 0.3);
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.6);
+            --radius-lg: 18px;
+            --radius-xl: 26px;
+            --radius-pill: 999px;
+            --max-width: 1120px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 52%, #000 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        /* Navbar */
+        
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(16px);
+            background: linear-gradient( to bottom, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.75), transparent);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            gap: 1.5rem;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(249, 115, 22, 0.45);
+        }
+        
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .brand-text-main {
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            font-size: 1.05rem;
+        }
+        
+        .brand-sub {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            font-size: 0.92rem;
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 0.2rem 0;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.2rem;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(to right, var(--accent), var(--accent-2));
+            transition: width 0.25s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            display: none;
+        }
+        /* Buttons */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.9rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b, #fb923c);
+            color: #111827;
+            box-shadow: 0 16px 40px rgba(248, 150, 30, 0.55);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 50px rgba(248, 150, 30, 0.7);
+        }
+        
+        .btn-outline {
+            border-color: rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--text-main);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.9);
+            transform: translateY(-1px);
+        }
+        
+        .btn-sm {
+            padding: 0.45rem 1rem;
+            font-size: 0.8rem;
+        }
+        /* Hero */
+        
+        .hero {
+            padding: 3.5rem 0 3rem;
+        }
+        
+        .hero-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 2.75rem;
+            align-items: center;
+        }
+        
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.18rem 0.65rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: radial-gradient(circle at 0 0, #f59e0b1a, transparent), rgba(15, 23, 42, 0.8);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+        
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0, #f59e0b, #fb923c);
+            box-shadow: 0 0 0 4px rgba(248, 150, 30, 0.28);
+        }
+        
+        .hero-title {
+            font-size: clamp(2.1rem, 3vw + 1.4rem, 3rem);
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.01em;
+        }
+        
+        .hero-title span {
+            background: linear-gradient(to right, #f59e0b, #fb923c);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 34rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+        
+        .badge {
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        
+        .badge i {
+            font-style: normal;
+            margin-right: 0.3rem;
+            color: var(--accent);
+        }
+        
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-note {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        
+        .hero-note strong {
+            color: var(--accent-2);
+        }
+        
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.4rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+        
+        .hero-stat span {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+        /* Hero right panel */
+        
+        .hero-panel {
+            background: radial-gradient(circle at 0 0, #f59e0b0f, transparent), radial-gradient(circle at 100% 0, #fb923c0f, transparent), linear-gradient(145deg, #020617, #020617, #020617);
+            border-radius: var(--radius-xl);
+            padding: 1.4rem 1.5rem 1.7rem;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-chip {
+            position: absolute;
+            inset-inline: auto 1.1rem;
+            top: 1.1rem;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: var(--radius-pill);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        
+        .hero-chip-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #f59e0b;
+            box-shadow: 0 0 0 4px rgba(248, 150, 30, 0.25);
+        }
+        
+        .hero-board {
+            margin-top: 1.4rem;
+            border-radius: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: radial-gradient(circle at 0 0, #f59e0b10, transparent), radial-gradient(circle at 100% 0, #fb923c10, transparent), #020617;
+            padding: 1.1rem 1.1rem 1.2rem;
+        }
+        
+        .board-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.9rem;
+        }
+        
+        .board-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .board-pill {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: var(--radius-pill);
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            color: var(--text-muted);
+        }
+        
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+        }
+        
+        .board-card {
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 0.65rem 0.75rem;
+            background: radial-gradient(circle at 0 0, #f59e0b1a, transparent), rgba(15, 23, 42, 0.95);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .board-card small {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--text-muted);
+        }
+        
+        .board-card h3 {
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.15rem;
+        }
+        
+        .board-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .board-chip {
+            font-size: 0.7rem;
+            margin-top: 0.4rem;
+            padding: 0.18rem 0.55rem;
+            border-radius: var(--radius-pill);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        
+        .board-chip span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        
+        .board-progress-wrap {
+            grid-column: span 2;
+            border-radius: 14px;
+            border: 1px dashed rgba(148, 163, 184, 0.5);
+            padding: 0.7rem 0.8rem 0.8rem;
+            background: rgba(15, 23, 42, 0.95);
+        }
+        
+        .progress-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+        
+        .progress-bar-track {
+            width: 100%;
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            width: 82%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #f59e0b, #fb923c);
+            position: relative;
+        }
+        
+        .progress-bar-fill::after {
+            content: "";
+            position: absolute;
+            right: -6px;
+            top: -3px;
+            width: 13px;
+            height: 13px;
+            border-radius: 999px;
+            border: 2px solid #020617;
+            background: #ffedd5;
+            box-shadow: 0 0 0 4px rgba(248, 150, 30, 0.35);
+        }
+        
+        .board-footer {
+            margin-top: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        
+        .board-footer span {
+            color: var(--accent-2);
+            font-weight: 500;
+        }
+        
+        section {
+            padding: 3.25rem 0;
+        }
+        
+        .section-header {
+            margin-bottom: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .section-kicker {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+        }
+        
+        .section-subtitle {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            max-width: 30rem;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 1.3rem;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        
+        .card {
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: radial-gradient(circle at 0 0, #f59e0b08, transparent), rgba(15, 23, 42, 0.92);
+            padding: 1rem;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.65);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 0.7rem;
+        }
+        
+        .card-label {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent-2);
+        }
+        
+        .card-title {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .card-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.35rem;
+        }
+        
+        .pill {
+            font-size: 0.72rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--text-muted);
+        }
+        
+        .price {
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-top: 0.4rem;
+        }
+        
+        .price span {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        
+        .steps {
+            display: grid;
+            gap: 0.9rem;
+        }
+        
+        .step {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+        
+        .step-index {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--accent);
+            flex-shrink: 0;
+            background: rgba(15, 23, 42, 0.95);
+        }
+        
+        .step-main {
+            flex: 1;
+        }
+        
+        .step-main h3 {
+            font-size: 0.92rem;
+            margin-bottom: 0.15rem;
+        }
+        
+        .step-main p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+        
+        .testimonial {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-left: 3px solid rgba(148, 163, 184, 0.8);
+            padding-left: 0.75rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .testimonial strong {
+            color: var(--accent-2);
+        }
+        
+        .highlight-list {
+            list-style: none;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            display: grid;
+            gap: 0.35rem;
+        }
+        
+        .highlight-list li::before {
+            content: "•";
+            margin-right: 0.4rem;
+            color: var(--accent);
+        }
+        
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 1.7rem;
+        }
+        
+        .form-card {
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: radial-gradient(circle at 0 0, #f59e0b0f, transparent), rgba(15, 23, 42, 0.96);
+            padding: 1.3rem 1.3rem 1.4rem;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .form-grid {
+            display: grid;
+            gap: 0.85rem;
+        }
+        
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        
+        .field label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .field input,
+        .field select,
+        .field textarea {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            padding: 0.55rem 0.7rem;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+            resize: vertical;
+            min-height: 0;
+        }
+        
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px rgba(248, 150, 30, 0.7);
+            background: rgba(15, 23, 42, 0.98);
+        }
+        
+        .field small {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        
+        .contact-info-card {
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: rgba(15, 23, 42, 0.95);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        
+        .info-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            font-size: 0.86rem;
+        }
+        
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+        }
+        
+        .info-value {
+            font-weight: 500;
+        }
+        
+        .info-value a {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+        }
+        
+        .info-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.25rem;
+        }
+        
+        .info-tag {
+            font-size: 0.72rem;
+            padding: 0.18rem 0.55rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--text-muted);
+        }
+        
+        .faq-list {
+            display: grid;
+            gap: 0.75rem;
+            font-size: 0.86rem;
+        }
+        
+        .faq-item {
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 0.7rem 0.8rem;
+            background: rgba(15, 23, 42, 0.96);
+        }
+        
+        .faq-q {
+            font-weight: 500;
+            margin-bottom: 0.15rem;
+        }
+        
+        .faq-a {
+            color: var(--text-muted);
+        }
+        
+        .footer {
+            border-top: 1px solid rgba(148, 163, 184, 0.3);
+            padding: 1.2rem 0 1.6rem;
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+        
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+        }
+        
+        @media (max-width: 900px) {
+            .hero-inner {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .hero-panel {
+                order: -1;
+            }
+            .contact-wrap {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        
+        @media (max-width: 720px) {
+            .nav-links {
+                display: none;
+            }
+            .nav-cta {
+                display: inline-flex;
+            }
+            .hero {
+                padding-top: 2.4rem;
+            }
+            section {
+                padding: 2.5rem 0;
+            }
+            .grid-3,
+            .grid-2 {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .board-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .board-progress-wrap {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="container nav-inner">
+                <div class="brand">
+                    <div class="brand-logo">
+                        <!-- Put your logo file as logo.png in same folder -->
+                        <img src="logo.png" alt="Voltiq Labs Logo" class="brand-logo-img" />
+                    </div>
+                    <div>
+                        <div class="brand-text-main">Voltiq Labs</div>
+                        <div class="brand-sub">Innovate · Build · Learn</div>
+                    </div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#services" class="nav-link">Projects</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#process" class="nav-link">How it Works</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+                <a href="#contact" class="btn btn-primary btn-sm nav-cta">Get a Quote</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero -->
+            <section class="hero" id="home">
+                <div class="container hero-inner">
+                    <div>
+                        <div class="eyebrow">
+                            <span class="eyebrow-dot"></span> Voltiq Labs · Electronics Projects
+                        </div>
+                        <h1 class="hero-title">
+                            We build <span>ready & custom</span> electronics projects for college students.
+                        </h1>
+                        <p class="hero-subtitle">
+                            Mini-projects, major projects, IoT, and embedded systems tailored for engineering and diploma students. You get working hardware, code, clear explanation, and basic documentation support.
+                        </p>
+
+                        <div class="hero-badges">
+                            <div class="badge"><i>✓</i> Student-friendly pricing</div>
+                            <div class="badge"><i>✓</i> Explaining session included</div>
+                            <div class="badge"><i>✓</i> Custom ideas from your guide</div>
+                        </div>
+
+                        <div class="hero-cta-row">
+                            <a href="#contact" class="btn btn-primary">
+              Get project quote
+            </a>
+                            <a href="#services" class="btn btn-outline">
+              View project categories
+            </a>
+                        </div>
+
+                        <p class="hero-note">
+                            Share your <strong>project title / syllabus / idea</strong> — Voltiq Labs will suggest practical options with approximate cost and delivery time.
+                        </p>
+
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <span>25+ </span> Sample project ideas ready
+                            </div>
+                            <div class="hero-stat">
+                                <span>3–10 days</span> Typical delivery time
+                            </div>
+                            <div class="hero-stat">
+                                <span>1:1 help</span> For demo & viva prep
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero visual panel -->
+                    <aside class="hero-panel" aria-hidden="true">
+                        <div class="hero-chip">
+                            <span class="hero-chip-dot"></span> Live status · Voltiq Order #VL-017
+                        </div>
+                        <div class="hero-board">
+                            <div class="board-header">
+                                <div class="board-title">Voltiq Labs · Project dashboard</div>
+                                <div class="board-pill">Semester projects • Embedded & IoT</div>
+                            </div>
+                            <div class="board-grid">
+                                <div class="board-card">
+                                    <small>Embedded</small>
+                                    <h3>Smart Home Control</h3>
+                                    <p>NodeMCU based Wi-Fi control for fan & lights using mobile app.</p>
+                                    <div class="board-chip">
+                                        In progress
+                                        <span>Code + circuit</span>
+                                    </div>
+                                </div>
+                                <div class="board-card">
+                                    <small>IoT</small>
+                                    <h3>Weather Monitoring</h3>
+                                    <p>ESP32 + sensors sending live temperature & humidity to cloud.</p>
+                                    <div class="board-chip">
+                                        Ready-made
+                                        <span>With documentation</span>
+                                    </div>
+                                </div>
+
+                                <div class="board-progress-wrap">
+                                    <div class="progress-label-row">
+                                        <span>Weekly capacity</span>
+                                        <span>4 / 5 projects</span>
+                                    </div>
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="board-footer">
+                                <div>Typical price range: <span>₹1,500 – ₹6,000 / project</span></div>
+                                <div>Includes: circuit, code, basic report points</div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- Services / Project Categories -->
+            <section id="services">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-kicker">Project types</div>
+                        <h2 class="section-title">What Voltiq Labs can build for you</h2>
+                        <p class="section-subtitle">
+                            Choose from ready concepts or share your own idea. We focus on practical, demo-friendly projects suitable for diploma, B.E/B.Tech, and polytechnic students.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-3">
+                        <article class="card">
+                            <div>
+                                <div class="card-label">Mini Projects</div>
+                                <h3 class="card-title">Basic Electronics & Sensors</h3>
+                                <p class="card-text">
+                                    Small projects that fit within 1–2 weeks: sensor-based alarms, counters, automation circuits, basic microcontroller tasks.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">Timers & counters</span>
+                                    <span class="pill">Sensor alarms</span>
+                                    <span class="pill">LED & display</span>
+                                </div>
+                            </div>
+                            <div class="price">
+                                From ₹1,200 <span>including explanation</span>
+                            </div>
+                        </article>
+
+                        <article class="card">
+                            <div>
+                                <div class="card-label">Major Projects</div>
+                                <h3 class="card-title">Embedded & IoT Systems</h3>
+                                <p class="card-text">
+                                    Full semester / final year projects with microcontrollers, IoT, and basic cloud dashboards, with source code & circuit diagram.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">Arduino / AVR / PIC</span>
+                                    <span class="pill">ESP8266 / ESP32</span>
+                                    <span class="pill">Cloud & apps</span>
+                                </div>
+                            </div>
+                            <div class="price">
+                                From ₹3,000 <span>hardware + code</span>
+                            </div>
+                        </article>
+
+                        <article class="card">
+                            <div>
+                                <div class="card-label">Custom Ideas</div>
+                                <h3 class="card-title">Your Own Project Concept</h3>
+                                <p class="card-text">
+                                    Already have a project title from college? Share the requirements and Voltiq Labs will design hardware, code, and a basic report structure.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">College title based</span>
+                                    <span class="pill">Custom features</span>
+                                    <span class="pill">Iteration support</span>
+                                </div>
+                            </div>
+                            <div class="price">
+                                Quote on request <span>depends on complexity</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing & Packages -->
+            <section id="pricing">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-kicker">Packages</div>
+                        <h2 class="section-title">Simple, student-friendly pricing</h2>
+                        <p class="section-subtitle">
+                            Final amount depends on components, complexity, and delivery time. Below ranges give you a rough idea.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-3">
+                        <article class="card">
+                            <div>
+                                <div class="card-label">Basic Kit</div>
+                                <h3 class="card-title">Mini Project</h3>
+                                <p class="card-text">
+                                    Good for lab mini-projects & quick submissions.
+                                </p>
+                                <ul class="highlight-list">
+                                    <li>Simple circuit & PCB / breadboard</li>
+                                    <li>Basic explanation (15–20 minutes)</li>
+                                    <li>Block diagram & abstract points</li>
+                                </ul>
+                            </div>
+                            <div class="price">₹1,200 – ₹2,000 <span>approx.</span></div>
+                        </article>
+
+                        <article class="card">
+                            <div>
+                                <div class="card-label">Recommended</div>
+                                <h3 class="card-title">Standard Major Project</h3>
+                                <p class="card-text">
+                                    Ideal for final year projects with demo & viva.
+                                </p>
+                                <ul class="highlight-list">
+                                    <li>Microcontroller / IoT based</li>
+                                    <li>Source code + circuit diagram</li>
+                                    <li>Guidance for presentation & demo</li>
+                                </ul>
+                            </div>
+                            <div class="price">₹3,000 – ₹5,000 <span>approx.</span></div>
+                        </article>
+
+                        <article class="card">
+                            <div>
+                                <div class="card-label">Custom</div>
+                                <h3 class="card-title">Advanced / Multi-Module</h3>
+                                <p class="card-text">
+                                    For complex, research-style or multi-node projects.
+                                </p>
+                                <ul class="highlight-list">
+                                    <li>Custom hardware architecture</li>
+                                    <li>Extra features & app / web UI</li>
+                                    <li>Multiple review calls</li>
+                                </ul>
+                            </div>
+                            <div class="price">From ₹5,000 <span>onwards</span></div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process -->
+            <section id="process">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-kicker">Process</div>
+                        <h2 class="section-title">How Voltiq Labs works with you</h2>
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div>
+                            <div class="steps">
+                                <div class="step">
+                                    <div class="step-index">1</div>
+                                    <div class="step-main">
+                                        <h3>Share your requirement</h3>
+                                        <p>
+                                            Send your project title, branch, semester, and any instructions from your guide or college. You can also send a screenshot of the assignment.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-index">2</div>
+                                    <div class="step-main">
+                                        <h3>Get project options & quote</h3>
+                                        <p>
+                                            We suggest 2–3 project options (or refine your idea), estimate cost, and tell you the delivery time.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-index">3</div>
+                                    <div class="step-main">
+                                        <h3>Development & updates</h3>
+                                        <p>
+                                            We build the circuit & code, share small updates (photos or short videos), and make minor changes if needed.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-index">4</div>
+                                    <div class="step-main">
+                                        <h3>Handover & explanation</h3>
+                                        <p>
+                                            You receive the project kit, key documentation points, and an explaining session so you can confidently face your lab, demo, and viva.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="testimonial">
+                                “At <strong>Voltiq Labs</strong>, our goal is simple: you should understand your project well enough to explain it in your own words, not just show a working kit.”
+                            </p>
+                            <ul class="highlight-list">
+                                <li>We don’t sell random kits without explanation.</li>
+                                <li>We try to keep component choice available in local markets.</li>
+                                <li>We avoid copying projects blindly; we adjust design to your level.</li>
+                                <li>Basic documentation help is included in most projects.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-kicker">Contact</div>
+                        <h2 class="section-title">Tell Voltiq Labs about your project</h2>
+                        <p class="section-subtitle">
+                            Fill the form or ping on WhatsApp with your branch, semester, and project topic.
+                        </p>
+                    </div>
+
+                    <div class="contact-wrap">
+                        <!-- Form (front-end only) -->
+                        <div class="form-card">
+                            <form id="contactForm" class="form-grid">
+                                <div class="field">
+                                    <label for="name">Full name</label>
+                                    <input type="text" id="name" name="name" placeholder="Your name" required />
+                                </div>
+
+                                <div class="field">
+                                    <label for="college">College / Institute</label>
+                                    <input type="text" id="college" name="college" placeholder="College name" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="branch">Branch & semester</label>
+                                    <input type="text" id="branch" name="branch" placeholder="e.g. ECE, 6th sem" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="phone">Phone / WhatsApp</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="10-digit number" required />
+                                    <small>We’ll contact you on WhatsApp or call for project details.</small>
+                                </div>
+
+                                <div class="field">
+                                    <label for="projectType">Project type</label>
+                                    <select id="projectType" name="projectType">
+                  <option value="">Select an option</option>
+                  <option value="mini">Mini project</option>
+                  <option value="major">Major / final year project</option>
+                  <option value="iot">IoT / cloud based</option>
+                  <option value="custom">Custom idea / given title</option>
+                </select>
+                                </div>
+
+                                <div class="field">
+                                    <label for="details">Project topic / requirements</label>
+                                    <textarea id="details" name="details" rows="3" placeholder="Mention your project title or what problem you want to solve."></textarea>
+                                </div>
+
+                                <div class="field">
+                                    <label for="deadline">Expected deadline</label>
+                                    <input type="date" id="deadline" name="deadline" />
+                                    <small>If you don’t know exact date, you can leave this empty.</small>
+                                </div>
+
+                                <div class="field">
+                                    <button type="submit" class="btn btn-primary">
+                  Submit enquiry
+                </button>
+                                    <small id="formMessage"></small>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Contact info -->
+                        <aside class="contact-info-card">
+                            <div class="info-row">
+                                <div class="info-label">Direct contact</div>
+                                <div class="info-value">
+                                    WhatsApp: <a href="https://wa.me/910000000000" target="_blank" rel="noopener">+91-00000-00000</a>
+                                </div>
+                                <div class="info-value">
+                                    Email: <a href="mailto:hello@voltiqlabs.com">hello@voltiqlabs.com</a>
+                                </div>
+                                <div class="info-tags">
+                                    <span class="info-tag">Prefer WhatsApp text first</span>
+                                    <span class="info-tag">Replies in 24 hours</span>
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-label">Service area</div>
+                                <div class="info-value">Primarily for local colleges (in-person handover) + courier for other cities.</div>
+                                <div class="info-tags">
+                                    <span class="info-tag">Electronics</span>
+                                    <span class="info-tag">Embedded</span>
+                                    <span class="info-tag">IoT / Automation</span>
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-label">Important note</div>
+                                <div class="info-value">
+                                    We help you <em>learn</em> the project. We do not attend your exams, viva, or any unfair-use activity.
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-label">Working hours</div>
+                                <div class="info-value">Mon – Sat · 10:00 AM – 7:00 PM</div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section>
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-kicker">FAQ</div>
+                        <h2 class="section-title">Common questions students ask</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-q">Will I get explanation of the project?</div>
+                            <div class="faq-a">
+                                Yes. Voltiq Labs explains the block diagram, working principle, and basic code flow so you can confidently answer viva questions.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-q">Can you create exactly the same project given by my guide?</div>
+                            <div class="faq-a">
+                                In most cases, yes. Share the title and any document from your college. If it’s unrealistic in your time/budget, we’ll suggest a practical alternative.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-q">Do you provide complete report?</div>
+                            <div class="faq-a">
+                                We provide key points, block diagram, and references. You should prepare the final report in your own words based on your college format.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-q">How much advance should I pay?</div>
+                            <div class="faq-a">
+                                Usually 30–50% advance is needed to start the work (for components). Remaining can be paid during handover.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-inner">
+                <div>© <span id="year"></span> Voltiq Labs · Innovate. Build. Learn.</div>
+                <div class="footer-links">
+                    <a href="#home">Top</a>
+                    <a href="#services">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Simple front-end submission handler (no backend yet)
+        const form = document.getElementById("contactForm");
+        const formMessage = document.getElementById("formMessage");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            formMessage.textContent =
+                "Thank you! This only saves the details in your browser. To actually contact Voltiq Labs, please send these details on WhatsApp or email mentioned on the right.";
+            formMessage.style.color = "#fed7aa";
+        });
+    </script>
+</body>
+
+</html>
